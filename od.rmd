@@ -30,7 +30,23 @@ Determine the probability of rolling a seven?
 you have two standard dice  
 both have 6 sides 
 
-Determine the probability of rolling a seven?  
+Determine the probability of rolling a seven? 
+
+We do this by simulating each die as an array containing the numbers 1 thru 6.  We use the R function "sample" to choose a number from each die (simulating a roll of the dice) and then add the two together and put the result into the next slot in the array we have named "count". So this technique is actually rolling the dice 10000 times and filling up the array we called "count" with the results of those 10000 rolls.  The table command applied to the array "count" nicely summarizes the results. The probability of rolling a seven is just the number of times it happened (in the bable under 7) divided by the length of the experiment -- 10000 in this case.
+
+```{r}
+d4=c(1,2,3,4,5,6)
+d5=c(1,2,3,4,5,6)
+count=numeric()
+
+for (j in 1:10000){
+  s4=sample(d4,size=1)
+   s5=sample(d5,size=1)
+count[j]=sum(s4,s5)
+}
+table(count)
+```
+
 
 ### Game three  
 
